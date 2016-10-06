@@ -1,3 +1,8 @@
+node_modules
+categories.db
+fooditems.db
+recipes.db
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
