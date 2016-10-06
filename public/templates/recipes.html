@@ -23,8 +23,7 @@
   </div>
 </div>
 
-<!-- div element repeats for each recipe to display. 
-  div element only displays when there are recipes to display. -->
+<!-- div element repeats for each recipe. Only displays when there are recipes to display. -->
 <div class="grid-100 row addHover" ng-repeat="recipe in recipes" ng-show="recipes.length > 0">
   <!-- Route the user to the Recipe Detail screen when they click on a row. -->
   <a href="#/edit/{{recipe._id}}">
@@ -41,9 +40,8 @@
         <p>
           <!-- Route the user to the Recipe Detail screen when they click on the 'Edit' link. -->
           <a href="#/edit/{{recipe._id}}"> <img src="images/edit.svg" height="12px"> Edit </a>
-          <!-- TODO Add a directive to this anchor element so that you can 
-            delete the recipe when the user clicks on the 'Delete' link. -->
-          <a class="no-action-link"> <img src="images/delete.svg" height="12px"> Delete </a>
+          <!-- Deletes the recipe when the user clicks on the 'Delete' link. -->
+          <a class="no-action-link" ng-click="deleteRecipeById(recipe._id)"> <img src="images/delete.svg" height="12px"> Delete </a>
         </p>
       </div>
     </div>

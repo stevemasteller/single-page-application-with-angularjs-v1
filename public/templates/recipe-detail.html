@@ -73,7 +73,7 @@
     <p>
       <!-- Bind this select element to the recipe model's `category` property 
 	       and populate the list with the categories from the database. -->
-      <select ng-model="recipe.category" ng-options="category.name for category in categories">
+      <select ng-model="recipe.category" ng-options="category.name as category.name for category in categories"">
         <option value="">All Categories</option>
       </select>
     </p>
@@ -137,10 +137,9 @@
   <div class="ingredient-row" ng-repeat="ingredient in recipe.ingredients">
     <div class="prefix-20 grid-30">
       <p>
-        <!-- TODO Add directives to this select element to bind its value 
-          to the recipe ingredient model's `foodItem` property and to 
+        <!-- Bind select element's value to the recipe ingredient model's `foodItem` property and 
           populate the list with the food items from the database. -->
-        <select ng-model="ingredient.foodItem" ng-options="foodItem.name for foodItem in foodItems">
+        <select ng-model="ingredient.foodItem" ng-options="foodItem.name as foodItem.name for foodItem in foodItems">
           <option value="">Select Item</option>
         </select>
       </p>
@@ -189,13 +188,11 @@
     </p>
   </div>
 
-  <!-- TODO Add a directive to this div element so that it repeats 
-    for each recipe step to display. -->
+  <!-- This div element repeats for each recipe step to display. -->
   <div class="step-row" ng-repeat="step in recipe.steps">
     <div class="prefix-20 grid-75">
       <p>
-        <!-- TODO Add a directive to this input element to bind its value 
-          to the recipe step model's `description` property. -->
+        <!-- Bind this input element's value to the recipe step model's `description` property. -->
         <input type="text" ng-model="step.description">
       </p>
     </div>

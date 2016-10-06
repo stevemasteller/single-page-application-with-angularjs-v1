@@ -9,6 +9,7 @@ angular.module('app').controller('RecipeDetailController', function($scope, data
 	});
 	
 	dataService.getCategories(function (response) {
+		console.log(response.data);
 		$scope.categories = response.data;
 	});
 	

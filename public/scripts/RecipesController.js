@@ -22,6 +22,7 @@ angular.module('app').controller('RecipesController', function($scope, dataServi
 		}
 	};
 	
+  
 	dataService.getCategories(function (response) {
 		$scope.categories = response.data;
 	});
