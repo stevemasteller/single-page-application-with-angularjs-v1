@@ -9,13 +9,22 @@ angular.module('app').service('dataService', function($http) {
 	}
 	
 	this.getRecipesByCategory = function(selectedCategory, callback) {
-		console.log(selectedCategory.name);
 		$http.get('/api/recipes?category=' + selectedCategory.name)
+		.then(callback)
+	}
+	
+	this.getRecipeById = function(id, callback) {
+		$http.get('/api/recipes/' + id)
 		.then(callback)
 	}
 	
 	this.getCategories = function(callback) {
 		$http.get('/api/categories')
+		.then(callback)
+	}
+	
+	this.getFoodItems = function(callback) {
+		$http.get('/api/fooditems')
 		.then(callback)
 	}
 	

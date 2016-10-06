@@ -12,7 +12,6 @@ angular.module('app').controller('RecipesController', function($scope, dataServi
 		if ($scope.selectedCategory) {
 			
 			dataService.getRecipesByCategory($scope.selectedCategory, function (response) {
-				console.log(response.data);
 				$scope.recipes = response.data;
 			});
 		} else {
