@@ -22,6 +22,15 @@ angular.module('app').controller('RecipesController', function($scope, dataServi
 		}
 	};
 	
+	$scope.deleteRecipeById = function(Id) {
+		
+		dataService.deleteRecipeById(Id, function(response) {
+			
+			dataService.getRecipes(function(response) {
+				$scope.recipes = response.data;
+			});
+		});
+	};
   
 	dataService.getCategories(function (response) {
 		$scope.categories = response.data;
