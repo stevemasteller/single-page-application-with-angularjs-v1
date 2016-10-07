@@ -3,8 +3,8 @@
     <!-- TODO Add a binding expression to display the recipe name 
       when editing a recipe. When adding a recipe, display the 
       static text 'Add New Recipe'. -->
-    <h2 ng-hide="$location.$$url === '/add'">{{recipe.name}}</h2>
-    <h2 ng-show="$location.$$url === '/add'">Add New Recipe</h2>
+    <h2 ng-show="$scope.$location.$$path === '/add'">{{recipe.name}}</h2>
+    <h2 ng-hide="$scope.$location.$$path === '/add'">Add New Recipe</h2>
  </div>
   <div class="grid-50">
     <div class="flush-right">
@@ -19,14 +19,14 @@
 
 <!-- TODO Add a directive to this div element so that it only displays
   when there are validation messages to display. -->
-<div class="grid-100 row">
+<div class="grid-100 row" ng-hide="errors.length === 0">
   <div class="grid-100">
     <p><i>The following errors were found:</i></p>
     <ul class="validation-errors">
-      <!-- TODO Add a directive to this li element so that it repeats
-        for each validation message that there is to display -->
-      <li>
-        <!-- TODO Add a binding expression to display the validation user message. -->
+      <!-- Repeat li element for each validation message that there is to display -->
+      <li ng-repeat="userMessage in errors">
+        <!-- Display the validation user message. -->
+		{{userMessage}}
       </li>
     </ul>
   </div>
@@ -158,17 +158,15 @@
     </div>
     <div class="grid-5 pad-top">
       <p class="flush-right">
-        <!-- TODO Add a directive to this anchor element so that you can 
-          delete the recipe ingredient when the user clicks on the 'Delete' link. -->
-        <a class="no-action-link"> <img src="images/delete.svg" height="12px"> </a>
+        <!-- Delete the recipe ingredient when the user clicks on the 'Delete' link. -->
+        <a class="no-action-link" ng-click="deleteIngredient($index)"> <img src="images/delete.svg" height="12px"> </a>
       </p>
     </div>
   </div>
 
   <div class="prefix-20 grid-80 add-row">
     <p>
-      <!-- TODO Add a directive to this button in order to handle 
-        when the user clicks to add a new recipe ingredient. -->
+      <!-- When the user clicks, add a new recipe ingredient. -->
       <button ng-click="addIngredient()">+ Add Another Ingredient</button>
     </p>
   </div>

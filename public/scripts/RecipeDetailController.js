@@ -2,26 +2,18 @@
 'use strict';
 
 angular.module('app').controller('RecipeDetailController', function($scope, dataService, $location, $routeParams) {
-	  
-	var url = $location.$$url;
-	if (url !== '/add') {
+	  				
+	$scope.errors = [];
+	$scope.recipe = {};
+	$scope.recipe.ingredients = [];
+	$scope.recipe.steps = [];
+
+	var path = $location.$$path;
+	
+
+	if (path !== '/add') {
 	
 		dataService.getRecipeById($routeParams.id, function (response) {
-			$scope.recipe = response.data;
-		});
-	} else {
-		
-		var newRecipe = {
-			name: ' ',
-			description: ' ',
-			category: 'Other',
-			prepTime: 0,
-			cookTime: 0,
-			ingredients: [{foodItem: ' ', condition: ' ', amount: ' '}],
-			steps: [{description: ' '}]
-		}
-		
-		dataService.postRecipe(newRecipe, function (response) {
 			$scope.recipe = response.data;
 		});
 	}
@@ -38,15 +30,46 @@ angular.module('app').controller('RecipeDetailController', function($scope, data
 		$scope.recipe.ingredients.push({ foodItem: "", condition: "", amount: ""})
 	};
 	
+	$scope.deleteIngredient = function(index) {
+		$scope.recipe.ingredients.splice(index, 1);
+	};
+  
+	$scope.addStep = function() {
+		$scope.recipe.steps.push({description: ""});
+	};
+
+	$scope.deleteStep = function(index) {
+		$scope.recipe.steps.splice(index, 1);
+	};
+  
 	$scope.putRecipe = function() {
-		dataService.putRecipe($scope.recipe._id, $scope.recipe, function(response) {
-			$scope.recipe = response.data;
-		}, function(errorCallback) {
-			$scope.errors = [];
-			for (var error in errorCallback.data.errors) {
-				$scope.errors.push(errorCallback.data.errors[error][0].userMessage)
-			}
-		});
+		
+		if (path !== '/add') {
+			
+			dataService.putRecipe($scope.recipe._id, $scope.recipe, function(response) {
+				$scope.recipe = response.data;
+				$location.path('/');
+				
+			}, function(errorCallback) {
+				$scope.errors = [];
+				for (var error in errorCallback.data.errors) {
+					$scope.errors.push(errorCallback.data.errors[error][0].userMessage)
+				}
+			});
+			
+		} else {
+			
+			dataService.postRecipe($scope.recipe, function (response) {
+				$scope.recipe = response.data;
+				$location.path('/');
+				
+			}, function(errorCallback) {
+				$scope.errors = [];
+				for (var error in errorCallback.data.errors) {
+					$scope.errors.push(errorCallback.data.errors[error][0].userMessage)
+				}
+			});
+		}
 	};
 	
 	

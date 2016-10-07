@@ -37,7 +37,7 @@ angular.module('app').controller('RecipesController', function($scope, dataServi
 	});
 	
 	$scope.addRecipe = function() {
-		$location.url('/add/');
+		$location.path('/add/');
 	};
 	
 });
