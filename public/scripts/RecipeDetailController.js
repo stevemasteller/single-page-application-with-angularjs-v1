@@ -46,9 +46,9 @@ angular.module('app').controller('RecipeDetailController', function($scope, data
 		$scope.recipe.steps.splice(index, 1);
 	};
   
-	$scope.putRecipe = function() {
+	$scope.saveRecipe = function() {
 		
-		if (path !== '/add') {
+		if ($location.$$path !== '/add') {
 			
 			dataService.putRecipe($scope.recipe._id, $scope.recipe, function(response) {
 				$location.path('/');
@@ -61,7 +61,6 @@ angular.module('app').controller('RecipeDetailController', function($scope, data
 			});
 			
 		} else {
-			
 			dataService.postRecipe($scope.recipe, function (response) {
 				$location.path('/');
 				
