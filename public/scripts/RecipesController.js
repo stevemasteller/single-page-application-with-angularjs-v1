@@ -22,13 +22,15 @@ angular.module('app').controller('RecipesController', function($scope, dataServi
 		}
 	};
 	
-	$scope.deleteRecipeById = function(Id) {
+	$scope.deleteRecipeById = function(id) {
 		
-		dataService.deleteRecipeById(Id, function(response) {
+		dataService.deleteRecipeById(id, function(response) {
 			
 			dataService.getRecipes(function(response) {
 				$scope.recipes = response.data;
 			});
+		}, function(errorCallback) {
+			console.log(errorCallback);
 		});
 	};
   
