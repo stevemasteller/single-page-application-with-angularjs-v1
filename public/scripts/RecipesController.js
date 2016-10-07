@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 
-angular.module('app').controller('RecipesController', function($scope, dataService) {
+angular.module('app').controller('RecipesController', function($scope, dataService, $location) {
 	  
 	dataService.getRecipes(function (response) {
 		$scope.recipes = response.data;
@@ -35,6 +35,10 @@ angular.module('app').controller('RecipesController', function($scope, dataServi
 	dataService.getCategories(function (response) {
 		$scope.categories = response.data;
 	});
+	
+	$scope.addRecipe = function() {
+		$location.url('/add/');
+	};
 	
 });
 })();

@@ -3,35 +3,44 @@
 
 angular.module('app').service('dataService', function($http) {
 	  
-	this.getRecipes = function(callback) {
+	this.getRecipes = function(successCallback, errorCallback) {
 		$http.get('/api/recipes')
-		.then(callback)
+		.then(successCallback, errorCallback)
 	};
 	
-	this.getRecipesByCategory = function(selectedCategory, callback) {
+	this.getRecipesByCategory = function(selectedCategory, successCallback, errorCallback) {
 		$http.get('/api/recipes?category=' + selectedCategory.name)
-		.then(callback)
+		.then(successCallback, errorCallback)
 	};
 	
-	this.getRecipeById = function(id, callback) {
+	this.getRecipeById = function(id, successCallback, errorCallback) {
 		$http.get('/api/recipes/' + id)
-		.then(callback)
+		.then(successCallback, errorCallback)
 	};
 	
-          // deletes a recipe by ID number
-	this.deleteRecipeById = function(id, callbackSuccess, callbackFailure) {
-            $http.delete('/api/recipes/' + id)
-            .then(callbackSuccess, callbackFailure)
-          };
+	this.putRecipe = function(id, recipe, successCallback, errorCallback) {
+		$http.put('/api/recipes/' + id, recipe)
+		.then(successCallback, errorCallback)
+	};
+
+	this.postRecipe = function(recipe, successCallback, errorCallback) {
+		$http.post('/api/recipes/', recipe)
+		.then(successCallback, errorCallback)
+	};
+
+	this.deleteRecipeById = function(id, successCallback, errorCallback) {
+		$http.delete('/api/recipes/' + id)
+		.then(successCallback, errorCallback)
+	};
 		  
-	this.getCategories = function(callback) {
+	this.getCategories = function(successCallback, errorCallback) {
 		$http.get('/api/categories')
-		.then(callback)
+		.then(successCallback, errorCallback)
 	};
 	
-	this.getFoodItems = function(callback) {
+	this.getFoodItems = function(successCallback, errorCallback) {
 		$http.get('/api/fooditems')
-		.then(callback)
+		.then(successCallback, errorCallback)
 	};
 	
 });

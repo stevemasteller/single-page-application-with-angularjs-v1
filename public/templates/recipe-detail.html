@@ -3,14 +3,15 @@
     <!-- TODO Add a binding expression to display the recipe name 
       when editing a recipe. When adding a recipe, display the 
       static text 'Add New Recipe'. -->
-    <h2>Add/Edit Recipe</h2>
-  </div>
+    <h2 ng-hide="$location.$$url === '/add'">{{recipe.name}}</h2>
+    <h2 ng-show="$location.$$url === '/add'">Add New Recipe</h2>
+ </div>
   <div class="grid-50">
     <div class="flush-right">
       <!-- TODO Add directives to both the "Save Recipe" and "Cancel"
         buttons in order to handle user clicks. -->
-      <button>Save Recipe</button>
-      <button class="secondary">Cancel</button>
+      <button ng-click="putRecipe()">Save Recipe</button>
+      <button class="secondary" ng-click="cancel()">Cancel</button>
     </div>
   </div>
 </div>
@@ -55,8 +56,7 @@
   </div>
   <div class="grid-60">
     <p>
-      <!-- TODO Add a directive to this textarea element to bind its content 
-        to the recipe model's `description` property. -->
+      <!-- Bind this textarea element to the recipe model's `description` property. -->
       <textarea ng-model="recipe.description"></textarea>
     </p>
   </div>
@@ -169,7 +169,7 @@
     <p>
       <!-- TODO Add a directive to this button in order to handle 
         when the user clicks to add a new recipe ingredient. -->
-      <button>+ Add Another Ingredient</button>
+      <button ng-click="addIngredient()">+ Add Another Ingredient</button>
     </p>
   </div>
 
