@@ -6,7 +6,7 @@ angular.module('app').controller('RecipeDetailController', function($scope, data
 	/** initialize errors array */
 	$scope.errors = [];
 	
-	/** initialize an empty recipe for the adding a new recipe - postRecipe */
+	/** initialize an empty recipe for adding a new recipe - postRecipe */
 	$scope.recipe = {};
 	$scope.recipe.ingredients = [];
 	$scope.recipe.steps = [];
@@ -74,6 +74,14 @@ angular.module('app').controller('RecipeDetailController', function($scope, data
 			
 		/** save a new recipe, return to the recipes.html screen */
 		} else {
+			
+			/** prepTime and cookTime can't be undefined or the delete function won't work */
+			if (!($scope.recipe.prepTime)) {
+				$scope.recipe.prepTime = 0;
+			}
+			if (!($scope.recipe.cookTime)) {
+				$scope.recipe.cookTime = 0;
+			}
 			dataService.postRecipe($scope.recipe, function (response) {
 				$location.path('/');
 				
