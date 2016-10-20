@@ -2,6 +2,6 @@
 
 A Recipe Book single page application (SPA) using AngularJS.  
 
-Treehouse Techdegree project 9
+Treehouse Full-Stack Techdegree project 9
 
 My work: AngularJS, ng attributes in HTML 
