@@ -1,2 +1,1 @@
-database: node ./src/api/data/seed.js
-web: node ./src/index.js
+web: node ./src/api/data/seed.js; node ./src/index.js
