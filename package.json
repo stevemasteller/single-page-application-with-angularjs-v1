@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "db": "node ./src/api/data/seed.js"
-	"start": "node ./src/index.js",
+    "db": "node ./src/api/data/seed.js",
+	"start": "node ./src/index.js"
   },
   "author": "Treehouse Island, Inc.",
   "license": "ISC",
